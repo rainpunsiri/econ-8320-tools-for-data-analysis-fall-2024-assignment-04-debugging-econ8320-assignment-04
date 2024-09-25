@@ -1,7 +1,7 @@
 name: Autograding Tests
 'on':
-- push
-- repository_dispatch
+  - push
+  - repository_dispatch
 permissions:
   checks: write
   actions: read
@@ -13,60 +13,61 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
+
     - name: Test 10x10
       id: test-10x10
       uses: classroom-resources/autograding-command-grader@v1
       with:
         test-name: Test 10x10
-        setup-command: ''
-        command: python -m unittest test10x10.py
+        command: python -m unittest tests.test10x10
         timeout: 1
         max-score: 1
+
     - name: Test 10x10 Size
       id: test-10x10-size
       uses: classroom-resources/autograding-command-grader@v1
       with:
         test-name: Test 10x10 Size
-        setup-command: ''
-        command: python -m unittest test10x10_size.py
+        command: python -m unittest tests.test10x10_size
         timeout: 1
         max-score: 1
+
     - name: Test 3x8
       id: test-3x8
       uses: classroom-resources/autograding-command-grader@v1
       with:
         test-name: Test 3x8
-        setup-command: ''
-        command: python -m unittest test3x8.py
+        command: python -m unittest tests.test3x8
         timeout: 1
         max-score: 1
+
     - name: Test 3x8 Size
       id: test-3x8-size
       uses: classroom-resources/autograding-command-grader@v1
       with:
         test-name: Test 3x8 Size
-        setup-command: ''
-        command: python -m unittest test3x8_size.py
+        command: python -m unittest tests.test3x8_size
         timeout: 1
         max-score: 1
+
     - name: Test Bad 1
       id: test-bad-1
       uses: classroom-resources/autograding-command-grader@v1
       with:
         test-name: Test Bad 1
-        setup-command: ''
-        command: python -m unittest testBad1.py
+        command: python -m unittest tests.testBad1
         timeout: 1
         max-score: 1
+
     - name: Test Bad 2
       id: test-bad-2
       uses: classroom-resources/autograding-command-grader@v1
       with:
         test-name: Test Bad 2
-        setup-command: ''
-        command: python -m unittest testBad2.py
+        command: python -m unittest tests.testBad2
         timeout: 1
         max-score: 1
+
     - name: Autograding Reporter
       uses: classroom-resources/autograding-grading-reporter@v1
       env:
